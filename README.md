@@ -1,4 +1,4 @@
-InfluxDB [![Build Status](https://travis-ci.org/influxdb/influxdb.png?branch=master)](https://travis-ci.org/influxdb/influxdb)
+InfluxDB 0.8 fork
 =========
 
 InfluxDB is an open source **distributed time series database** with

@@ -88,7 +88,7 @@ endif
 endif
 
 # packages
-test_packages = $(shell sh -c "go list github.com/Wikia/influxdb/... | egrep -v 'integration|tools'")
+test_packages = $(shell sh -c "go list ./... | egrep -v 'integration|tools'")
 ifneq ($(packages),)
 test_packages = $(addprefix github.com/Wikia/influxdb/,$(packages))
 endif

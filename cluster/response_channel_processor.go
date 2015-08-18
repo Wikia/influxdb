@@ -1,7 +1,7 @@
 package cluster
 
 import (
-	"code.google.com/p/log4go"
+	"github.com/alecthomas/log4go"
 	"github.com/influxdb/influxdb/engine"
 	"github.com/influxdb/influxdb/protocol"
 )

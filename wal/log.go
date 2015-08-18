@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"strings"
 
-	"code.google.com/p/goprotobuf/proto"
-	logger "code.google.com/p/log4go"
+	"github.com/golang/protobuf/proto"
+	logger "github.com/alecthomas/log4go"
 	"github.com/influxdb/influxdb/configuration"
 	"github.com/influxdb/influxdb/protocol"
 )

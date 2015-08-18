@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"time"
 
-	log "code.google.com/p/log4go"
+	log "github.com/alecthomas/log4go"
 	"github.com/influxdb/influxdb/_vendor/raft"
 	"github.com/influxdb/influxdb/configuration"
 	"github.com/influxdb/influxdb/coordinator"

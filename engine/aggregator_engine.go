@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"code.google.com/p/log4go"
+	"github.com/alecthomas/log4go"
 
 	"github.com/influxdb/influxdb/common"
 	"github.com/influxdb/influxdb/parser"

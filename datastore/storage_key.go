@@ -7,7 +7,7 @@ import (
 	"math"
 	"time"
 
-	"code.google.com/p/log4go"
+	"github.com/alecthomas/log4go"
 
 	"github.com/influxdb/influxdb/common"
 )

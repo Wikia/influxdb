@@ -9,7 +9,7 @@ import (
 
 	"launchpad.net/gocheck"
 
-	log "code.google.com/p/log4go"
+	log "github.com/alecthomas/log4go"
 	"github.com/influxdb/influxdb/cluster"
 	"github.com/influxdb/influxdb/protocol"
 )

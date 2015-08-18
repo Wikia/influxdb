@@ -1,7 +1,7 @@
 package engine
 
 import (
-	"code.google.com/p/log4go"
+	"github.com/alecthomas/log4go"
 	"github.com/influxdb/influxdb/parser"
 	"github.com/influxdb/influxdb/protocol"
 )

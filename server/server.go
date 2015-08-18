@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"time"
 
-	log "code.google.com/p/log4go"
+	log "github.com/alecthomas/log4go"
 	"github.com/influxdb/influxdb/admin"
 	"github.com/influxdb/influxdb/api/collectd"
 	"github.com/influxdb/influxdb/api/graphite"

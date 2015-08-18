@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"code.google.com/p/log4go"
+	"github.com/alecthomas/log4go"
 
 	"github.com/influxdb/influxdb/common"
 	"github.com/influxdb/influxdb/engine"

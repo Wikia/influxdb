@@ -26,7 +26,7 @@ import (
 	"github.com/influxdb/influxdb/configuration"
 	"github.com/influxdb/influxdb/protocol"
 
-	log "code.google.com/p/log4go"
+	log "github.com/alecthomas/log4go"
 )
 
 type Server struct {

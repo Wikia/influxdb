@@ -9,7 +9,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"code.google.com/p/gogoprotobuf/proto"
+	"github.com/gogo/protobuf/proto"
 	"github.com/dgnorton/goback"
 	"github.com/influxdb/influxdb/_vendor/raft/protobuf"
 )

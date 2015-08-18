@@ -5,7 +5,7 @@ package main
 import (
 	"errors"
 
-	log "code.google.com/p/log4go"
+	log "github.com/alecthomas/log4go"
 )
 
 type sysLogWriter chan *log.LogRecord

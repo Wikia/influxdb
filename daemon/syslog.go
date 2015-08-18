@@ -7,7 +7,7 @@ import (
 	"log/syslog"
 	"strings"
 
-	log "code.google.com/p/log4go"
+	log "github.com/alecthomas/log4go"
 )
 
 type sysLogWriter chan *log.LogRecord

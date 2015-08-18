@@ -20,7 +20,7 @@ import (
 	"syscall"
 	"time"
 
-	log "code.google.com/p/log4go"
+	log "github.com/alecthomas/log4go"
 )
 
 var profileFilename *string

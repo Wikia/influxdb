@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"time"
 
-	log "code.google.com/p/log4go"
+	log "github.com/alecthomas/log4go"
 	"github.com/BurntSushi/toml"
 )
 

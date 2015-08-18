@@ -8,7 +8,7 @@ import (
 	"syscall"
 	"time"
 
-	log "code.google.com/p/log4go"
+	log "github.com/alecthomas/log4go"
 )
 
 func startProfiler(stoppable Stoppable) error {

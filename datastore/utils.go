@@ -1,8 +1,8 @@
 package datastore
 
 import (
-	"code.google.com/p/goprotobuf/proto"
-	"code.google.com/p/log4go"
+	"github.com/golang/protobuf/proto"
+	"github.com/alecthomas/log4go"
 
 	"github.com/influxdb/influxdb/engine"
 	"github.com/influxdb/influxdb/protocol"

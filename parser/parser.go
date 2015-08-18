@@ -614,7 +614,7 @@ func (self *SelectQuery) GetGroupByClause() *GroupByClause {
 	return self.groupByClause
 }
 
-// This is just for backward compatability so we don't have
+// This is just for backward compatibility so we don't have
 // to change all the code.
 func ParseSelectQuery(query string) (*SelectQuery, error) {
 	queries, err := ParseQuery(query)

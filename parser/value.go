@@ -8,6 +8,7 @@ import (
 	"bytes"
 	"fmt"
 	"regexp"
+	"strings"
 )
 
 type ValueType int
@@ -54,17 +55,44 @@ func (self *Value) GetString() string {
 	case ValueString:
 		fmt.Fprintf(buffer, "'%s'", self.Name)
 	case ValueRegex:
-		fmt.Fprintf(buffer, "/%s/", self.Name)
+		fmt.Fprintf(buffer, "/%s/", QueryFormatRegex(self.Name))
 		if self.IsInsensitive {
 			buffer.WriteString("i")
 		}
+	case ValueSimpleName:
+		buffer.WriteString(QueryFormatSimpleName(self.Name))
 	default:
 		buffer.WriteString(self.Name)
 	}
 
 	if self.Alias != "" {
-		fmt.Fprintf(buffer, " as %s", self.Alias)
+		fmt.Fprintf(buffer, " as %s", QueryFormatSimpleName(self.Alias))
 	}
 
 	return buffer.String()
+}
+
+func StringNeedsQuotes(r rune) bool {
+	return !((r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') || r == '_');
+}
+
+func QueryFormatSimpleName(s string) string {
+	needsQuotes := strings.IndexFunc(s, StringNeedsQuotes)
+
+	// all characters are ok
+	if (needsQuotes == -1) {
+		return s;
+	}
+
+	s = strings.Replace(s, "\\", "\\\\", -1)
+	s = strings.Replace(s, "\"", "\\\"", -1)
+	return fmt.Sprintf("\"%s\"", s)
+}
+
+func QueryFormatRegex(s string) string {
+	if (strings.Index(s, "/") == -1) {
+		return s;
+	}
+
+	return strings.Replace(s, "/", "\\/", -1)
 }

@@ -29,7 +29,7 @@ func (self *TableName) GetAlias() string {
 
 func (self *TableName) GetAliasString() string {
 	if self.Alias != "" {
-		return fmt.Sprintf(" as %s", self.Alias)
+		return fmt.Sprintf(" as %s", QueryFormatSimpleName(self.Alias))
 	}
 	return ""
 }
@@ -65,13 +65,13 @@ func (self *FromClause) GetString() string {
 		for _, t := range self.Names {
 			alias := ""
 			if t.Alias != "" {
-				alias = fmt.Sprintf(" as %s", t.Alias)
+				alias = fmt.Sprintf(" as %s", QueryFormatSimpleName(t.Alias))
 			}
 			if t.Name.Type == ValueRegex {
 				names = append(names, fmt.Sprintf(`%s%s`, t.Name.GetString(), alias))
 				continue
 			}
-			names = append(names, fmt.Sprintf(`"%s"%s`, t.Name.GetString(), alias))
+			names = append(names, fmt.Sprintf(`%s%s`, t.Name.GetString(), alias))
 		}
 		buffer.WriteString(strings.Join(names, ","))
 	}

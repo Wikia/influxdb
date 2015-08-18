@@ -121,6 +121,11 @@ func (self *QueryParserSuite) TestGetQueryString(c *C) {
 		"select value from t where c = '5'",
 		"select value from t where c = '5' limit 1",
 		"select value from t where c = '5' limit 1 order asc",
+		"select value from /.*\\/foo.*/i",
+		"select value from t where c =~ /^te\\\\st\\//",
+		"select \"value-x\" from t",
+		"select sum(\"value-x\") from t",
+		"select sum(\"value-x\") as \"value-x-sum\" from t",
 		"select a.value, b.value from foo as a inner join bar as b where c = '5' limit 1 order asc",
 		"select count(value) from t group by time(1h)",
 		"select count(value) from t group by time(1h) into value.hourly",
@@ -930,7 +935,7 @@ func (self *QueryParserSuite) TestParseSinglePointQuery(c *C) {
 }
 
 func (self *QueryParserSuite) TestSinglePointGetQueryString(c *C) {
-	qs := "select value from \"foo\" where (time = 999) AND (sequence_number = 1)"
+	qs := "select value from foo where (time = 999) AND (sequence_number = 1)"
 	q, err := ParseSelectQuery(qs)
 	c.Assert(err, IsNil)
 	c.Assert(q.GetQueryString(), Equals, qs)

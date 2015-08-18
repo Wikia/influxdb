@@ -6,13 +6,13 @@ import (
 	"strings"
 	"time"
 
-	log "github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/common"
 	"github.com/Wikia/influxdb/engine"
 	"github.com/Wikia/influxdb/metastore"
 	"github.com/Wikia/influxdb/parser"
 	p "github.com/Wikia/influxdb/protocol"
 	"github.com/Wikia/influxdb/wal"
+	log "github.com/alecthomas/log4go"
 )
 
 // A shard implements an interface for writing and querying data.

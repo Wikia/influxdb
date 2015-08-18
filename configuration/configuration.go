@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	log "github.com/alecthomas/log4go"
 	"github.com/BurntSushi/toml"
+	log "github.com/alecthomas/log4go"
 )
 
 type Size int

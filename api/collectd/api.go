@@ -5,11 +5,11 @@ import (
 	"net"
 	"sync"
 
-	log "github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/api"
 	"github.com/Wikia/influxdb/cluster"
 	"github.com/Wikia/influxdb/configuration"
 	"github.com/Wikia/influxdb/protocol"
+	log "github.com/alecthomas/log4go"
 
 	collectd "github.com/kimor79/gollectd"
 )
@@ -130,7 +130,7 @@ func packetToSeries(p *collectd.Packet) []*protocol.Series {
 
 	series := make([]*protocol.Series, len(p.Values))
 
-	for i, _ := range p.Values {
+	for i := range p.Values {
 		metricName := p.FormatName()
 
 		values := []*protocol.FieldValue{}

@@ -11,11 +11,11 @@ import (
 	"strconv"
 	"time"
 
-	log "github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/_vendor/raft"
 	"github.com/Wikia/influxdb/configuration"
 	"github.com/Wikia/influxdb/coordinator"
 	"github.com/Wikia/influxdb/server"
+	log "github.com/alecthomas/log4go"
 	"github.com/jmhodges/levigo"
 )
 

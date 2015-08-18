@@ -1,8 +1,8 @@
 package cluster
 
 import (
-	"github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/protocol"
+	"github.com/alecthomas/log4go"
 )
 
 // A `ResponseProcessor' that wraps a go channel.

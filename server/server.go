@@ -6,7 +6,6 @@ import (
 	"runtime"
 	"time"
 
-	log "github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/admin"
 	"github.com/Wikia/influxdb/api/collectd"
 	"github.com/Wikia/influxdb/api/graphite"
@@ -19,6 +18,7 @@ import (
 	"github.com/Wikia/influxdb/datastore"
 	"github.com/Wikia/influxdb/metastore"
 	"github.com/Wikia/influxdb/wal"
+	log "github.com/alecthomas/log4go"
 )
 
 type Server struct {

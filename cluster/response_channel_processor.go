@@ -1,9 +1,9 @@
 package cluster
 
 import (
-	"github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/engine"
 	"github.com/Wikia/influxdb/protocol"
+	"github.com/alecthomas/log4go"
 )
 
 // ResponseChannelProcessor converts Series to Responses. This is used

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	log "github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/common"
+	log "github.com/alecthomas/log4go"
 )
 
 type GroupByClause struct {

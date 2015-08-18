@@ -1,8 +1,8 @@
 package engine
 
 import (
-	"github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/protocol"
+	"github.com/alecthomas/log4go"
 )
 
 // Merger merges a number of StreamQuery into one stream of points

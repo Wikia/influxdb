@@ -8,11 +8,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/golang/protobuf/proto"
-	logger "github.com/alecthomas/log4go"
 	. "github.com/Wikia/influxdb/checkers"
 	"github.com/Wikia/influxdb/configuration"
 	"github.com/Wikia/influxdb/protocol"
+	logger "github.com/alecthomas/log4go"
+	"github.com/golang/protobuf/proto"
 	. "launchpad.net/gocheck"
 )
 

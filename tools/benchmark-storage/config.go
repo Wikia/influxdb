@@ -6,9 +6,9 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/golang/protobuf/proto"
 	"github.com/Wikia/influxdb/datastore/storage"
 	"github.com/Wikia/influxdb/protocol"
+	"github.com/golang/protobuf/proto"
 )
 
 type Config struct {

@@ -1,8 +1,8 @@
 package wal
 
 import (
-	logger "github.com/alecthomas/log4go"
 	"fmt"
+	logger "github.com/alecthomas/log4go"
 	"io/ioutil"
 	"os"
 	"sort"

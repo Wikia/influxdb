@@ -73,15 +73,15 @@ func (self *Value) GetString() string {
 }
 
 func StringNeedsQuotes(r rune) bool {
-	return !((r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') || r == '_');
+	return !((r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') || r == '_')
 }
 
 func QueryFormatSimpleName(s string) string {
 	needsQuotes := strings.IndexFunc(s, StringNeedsQuotes)
 
 	// all characters are ok
-	if (needsQuotes == -1) {
-		return s;
+	if needsQuotes == -1 {
+		return s
 	}
 
 	s = strings.Replace(s, "\\", "\\\\", -1)
@@ -90,8 +90,8 @@ func QueryFormatSimpleName(s string) string {
 }
 
 func QueryFormatRegex(s string) string {
-	if (strings.Index(s, "/") == -1) {
-		return s;
+	if strings.Index(s, "/") == -1 {
+		return s
 	}
 
 	return strings.Replace(s, "/", "\\/", -1)

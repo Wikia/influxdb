@@ -6,9 +6,9 @@ import (
 	"net"
 	"time"
 
-	log "github.com/alecthomas/log4go"
 	c "github.com/Wikia/influxdb/configuration"
 	"github.com/Wikia/influxdb/protocol"
+	log "github.com/alecthomas/log4go"
 )
 
 const (

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	log "github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/protocol"
+	log "github.com/alecthomas/log4go"
 )
 
 var (

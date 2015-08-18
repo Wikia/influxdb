@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	mdb "github.com/influxdb/gomdb"
 	"github.com/Wikia/influxdb/configuration"
+	mdb "github.com/influxdb/gomdb"
 )
 
 const MDB_NAME = "lmdb"

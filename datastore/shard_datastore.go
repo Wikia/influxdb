@@ -10,13 +10,13 @@ import (
 	"sync"
 	"time"
 
-	log "github.com/alecthomas/log4go"
 	"github.com/BurntSushi/toml"
 	"github.com/Wikia/influxdb/cluster"
 	"github.com/Wikia/influxdb/configuration"
 	"github.com/Wikia/influxdb/datastore/storage"
 	"github.com/Wikia/influxdb/metastore"
 	"github.com/Wikia/influxdb/protocol"
+	log "github.com/alecthomas/log4go"
 )
 
 type ShardDatastore struct {

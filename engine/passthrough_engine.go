@@ -3,9 +3,9 @@ package engine
 // This engine buffers points and passes them through without modification. Works for queries
 // that can't be aggregated locally or queries that don't require it like deletes and drops.
 import (
-	log "github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/common"
 	"github.com/Wikia/influxdb/protocol"
+	log "github.com/alecthomas/log4go"
 )
 
 type Passthrough struct {

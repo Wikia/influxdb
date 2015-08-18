@@ -6,10 +6,10 @@ import (
 	"io"
 	"time"
 
-	log "github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/_vendor/raft"
 	"github.com/Wikia/influxdb/cluster"
 	"github.com/Wikia/influxdb/protocol"
+	log "github.com/alecthomas/log4go"
 )
 
 var internalRaftCommands map[string]raft.Command

@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	log "github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/protocol"
+	log "github.com/alecthomas/log4go"
 )
 
 type ProtobufServer struct {

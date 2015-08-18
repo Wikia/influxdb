@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"net"
 
-	log "github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/cluster"
 	"github.com/Wikia/influxdb/common"
 	"github.com/Wikia/influxdb/parser"
 	"github.com/Wikia/influxdb/protocol"
+	log "github.com/alecthomas/log4go"
 )
 
 type ProtobufRequestHandler struct {

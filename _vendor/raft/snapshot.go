@@ -9,9 +9,9 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/gogo/protobuf/proto"
-	"github.com/dgnorton/goback"
 	"github.com/Wikia/influxdb/_vendor/raft/protobuf"
+	"github.com/dgnorton/goback"
+	"github.com/gogo/protobuf/proto"
 )
 
 // Snapshot represents an in-memory representation of the current state of the system.

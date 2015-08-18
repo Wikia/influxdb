@@ -17,14 +17,14 @@ import (
 	"sync"
 	"time"
 
-	log "github.com/alecthomas/log4go"
-	"github.com/gorilla/mux"
 	"github.com/Wikia/influxdb/_vendor/raft"
 	"github.com/Wikia/influxdb/cluster"
 	"github.com/Wikia/influxdb/common"
 	"github.com/Wikia/influxdb/configuration"
 	"github.com/Wikia/influxdb/parser"
 	"github.com/Wikia/influxdb/protocol"
+	log "github.com/alecthomas/log4go"
+	"github.com/gorilla/mux"
 )
 
 const (

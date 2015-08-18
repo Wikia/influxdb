@@ -16,8 +16,6 @@ import (
 	"strings"
 	"time"
 
-	log "github.com/alecthomas/log4go"
-	"github.com/bmizerany/pat"
 	"github.com/Wikia/influxdb/api"
 	"github.com/Wikia/influxdb/cluster"
 	. "github.com/Wikia/influxdb/common"
@@ -25,6 +23,8 @@ import (
 	"github.com/Wikia/influxdb/coordinator"
 	"github.com/Wikia/influxdb/parser"
 	"github.com/Wikia/influxdb/protocol"
+	log "github.com/alecthomas/log4go"
+	"github.com/bmizerany/pat"
 )
 
 type HttpServer struct {

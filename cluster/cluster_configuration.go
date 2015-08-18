@@ -14,13 +14,13 @@ import (
 	"sync"
 	"time"
 
-	log "github.com/alecthomas/log4go"
 	"github.com/Wikia/influxdb/common"
 	"github.com/Wikia/influxdb/configuration"
 	"github.com/Wikia/influxdb/metastore"
 	"github.com/Wikia/influxdb/parser"
 	"github.com/Wikia/influxdb/protocol"
 	"github.com/Wikia/influxdb/wal"
+	log "github.com/alecthomas/log4go"
 )
 
 // defined by cluster config (in cluster package)

@@ -219,6 +219,10 @@ storage_engines += $(leveldb_deps)
 
 dependencies: $(storage_engines)
 	$(GO) get $(GO_BUILD_OPTIONS) -d -t github.com/Wikia/influxdb/...
+	$(GO) get github.com/gogo/protobuf/proto
+	$(GO) get github.com/alecthomas/log4go
+	$(GO) get github.com/golang/protobuf/proto
+	$(GO) get golang.org/x/crypto/bcrypt
 
 $(root)/bin/protoc-gen-go:
 	$(GO) get github.com/golang/protobuf/protoc-gen-go

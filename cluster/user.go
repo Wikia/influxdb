@@ -3,7 +3,7 @@ package cluster
 import (
 	"regexp"
 
-	"github.com/golang/crypto/bcrypt"
+	"golang.org/x/crypto/bcrypt"
 	"github.com/influxdb/go-cache"
 	"github.com/Wikia/influxdb/common"
 )

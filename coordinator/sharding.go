@@ -1,8 +1,8 @@
 package coordinator
 
 import (
-	"github.com/influxdb/influxdb/cluster"
-	"github.com/influxdb/influxdb/parser"
+	"github.com/Wikia/influxdb/cluster"
+	"github.com/Wikia/influxdb/parser"
 )
 
 // duration 1h, 1d, 7d

@@ -5,9 +5,9 @@ import (
 	"math"
 	"strconv"
 
-	"github.com/influxdb/influxdb/common"
-	"github.com/influxdb/influxdb/parser"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/common"
+	"github.com/Wikia/influxdb/parser"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 type ArithmeticOperator func(elems []*parser.Value, fields []string, point *protocol.Point) (*protocol.FieldValue, error)

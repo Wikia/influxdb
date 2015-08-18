@@ -9,7 +9,7 @@ import (
 
 	"github.com/alecthomas/log4go"
 
-	"github.com/influxdb/influxdb/common"
+	"github.com/Wikia/influxdb/common"
 )
 
 const maxSeqNumber = (1 << 64) - 1

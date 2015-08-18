@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 const (

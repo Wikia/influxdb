@@ -10,8 +10,8 @@ import (
 	"launchpad.net/gocheck"
 
 	log "github.com/alecthomas/log4go"
-	"github.com/influxdb/influxdb/cluster"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/cluster"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 type PingResponseServer struct {

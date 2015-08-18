@@ -13,9 +13,9 @@ import (
 	"runtime"
 	"time"
 
-	influxdb "github.com/influxdb/influxdb/client"
-	"github.com/influxdb/influxdb/common"
-	"github.com/influxdb/influxdb/configuration"
+	influxdb "github.com/Wikia/influxdb/client"
+	"github.com/Wikia/influxdb/common"
+	"github.com/Wikia/influxdb/configuration"
 	. "launchpad.net/gocheck"
 )
 

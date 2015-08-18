@@ -1,6 +1,6 @@
 package helpers
 
-import "github.com/influxdb/influxdb/common"
+import "github.com/Wikia/influxdb/common"
 
 func ToMap(series common.ApiSeries) []map[string]interface{} {
 	seriesPoints := series.GetPoints()

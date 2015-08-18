@@ -3,7 +3,7 @@ package engine
 import (
 	"container/heap"
 
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 type Value struct {

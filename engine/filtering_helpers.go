@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/influxdb/influxdb/parser"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/parser"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 func getExpressionValue(values []*parser.Value, fields []string, point *protocol.Point) ([]*protocol.FieldValue, error) {

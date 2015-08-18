@@ -1,8 +1,8 @@
 package cluster
 
 import (
-	"github.com/influxdb/influxdb/configuration"
-	"github.com/influxdb/influxdb/metastore"
+	"github.com/Wikia/influxdb/configuration"
+	"github.com/Wikia/influxdb/metastore"
 	. "launchpad.net/gocheck"
 )
 
@@ -10,7 +10,7 @@ type ClusterConfigurationSuite struct{}
 
 var _ = Suite(&ClusterConfigurationSuite{})
 
-// wrote this test while tracking down https://github.com/influxdb/influxdb/issues/886
+// wrote this test while tracking down https://github.com/Wikia/influxdb/issues/886
 func (self *ClusterConfigurationSuite) TestSerializesShardSpaces(c *C) {
 	config := &configuration.Configuration{}
 	store := metastore.NewStore()

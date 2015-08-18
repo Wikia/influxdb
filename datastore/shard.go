@@ -10,12 +10,12 @@ import (
 
 	"github.com/golang/protobuf/proto"
 	log "github.com/alecthomas/log4go"
-	"github.com/influxdb/influxdb/common"
-	"github.com/influxdb/influxdb/datastore/storage"
-	"github.com/influxdb/influxdb/engine"
-	"github.com/influxdb/influxdb/metastore"
-	"github.com/influxdb/influxdb/parser"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/common"
+	"github.com/Wikia/influxdb/datastore/storage"
+	"github.com/Wikia/influxdb/engine"
+	"github.com/Wikia/influxdb/metastore"
+	"github.com/Wikia/influxdb/parser"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 type Shard struct {

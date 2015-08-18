@@ -12,7 +12,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/influxdb/influxdb/datastore/storage"
+	"github.com/Wikia/influxdb/datastore/storage"
 )
 
 func main() {

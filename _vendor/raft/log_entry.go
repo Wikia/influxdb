@@ -7,7 +7,7 @@ import (
 	"io"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/influxdb/influxdb/_vendor/raft/protobuf"
+	"github.com/Wikia/influxdb/_vendor/raft/protobuf"
 )
 
 // A log entry stores a single item in the log.

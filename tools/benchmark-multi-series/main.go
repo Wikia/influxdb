@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/influxdb/influxdb/client"
+	"github.com/Wikia/influxdb/client"
 )
 
 func main() {

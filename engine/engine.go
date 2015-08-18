@@ -1,6 +1,6 @@
 package engine
 
-import "github.com/influxdb/influxdb/parser"
+import "github.com/Wikia/influxdb/parser"
 
 func NewQueryEngine(next Processor, query *parser.SelectQuery, shards []uint32) (Processor, error) {
 	limit := query.Limit

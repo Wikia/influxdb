@@ -5,7 +5,7 @@ import (
 
 	"github.com/golang/crypto/bcrypt"
 	"github.com/influxdb/go-cache"
-	"github.com/influxdb/influxdb/common"
+	"github.com/Wikia/influxdb/common"
 )
 
 var userCache *cache.Cache

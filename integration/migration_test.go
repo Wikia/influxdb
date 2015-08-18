@@ -13,10 +13,10 @@ are up on S3 so that we can run it later. Just trust that I've run it (this is P
 // 	"path/filepath"
 // 	"time"
 
-// 	"github.com/influxdb/influxdb/datastore"
-// 	"github.com/influxdb/influxdb/migration"
+// 	"github.com/Wikia/influxdb/datastore"
+// 	"github.com/Wikia/influxdb/migration"
 
-// 	. "github.com/influxdb/influxdb/integration/helpers"
+// 	. "github.com/Wikia/influxdb/integration/helpers"
 // 	. "launchpad.net/gocheck"
 // )
 

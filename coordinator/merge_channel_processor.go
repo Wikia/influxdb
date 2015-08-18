@@ -6,9 +6,9 @@ import (
 
 	"github.com/alecthomas/log4go"
 
-	"github.com/influxdb/influxdb/common"
-	"github.com/influxdb/influxdb/engine"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/common"
+	"github.com/Wikia/influxdb/engine"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 // This struct is responsible for merging responses from multiple

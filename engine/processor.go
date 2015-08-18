@@ -3,7 +3,7 @@ package engine
 import (
 	"fmt"
 
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 // Passed to a shard (local datastore or whatever) that gets yielded points from series.

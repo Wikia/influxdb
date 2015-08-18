@@ -7,9 +7,9 @@ import (
 	"time"
 
 	log "github.com/alecthomas/log4go"
-	"github.com/influxdb/influxdb/_vendor/raft"
-	"github.com/influxdb/influxdb/cluster"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/_vendor/raft"
+	"github.com/Wikia/influxdb/cluster"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 var internalRaftCommands map[string]raft.Command
@@ -344,7 +344,7 @@ func (c *CreateShardsCommand) CommandName() string {
 }
 
 // TODO: Encode/Decode are not needed once this pr
-// https://github.com/influxdb/influxdb/vendor/raft/pull/221 is merged in and our goraft
+// https://github.com/Wikia/influxdb/vendor/raft/pull/221 is merged in and our goraft
 // is updated to a commit that includes the pr
 
 func (c *CreateShardsCommand) Encode(w io.Writer) error {

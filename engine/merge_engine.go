@@ -1,6 +1,6 @@
 package engine
 
-import "github.com/influxdb/influxdb/protocol"
+import "github.com/Wikia/influxdb/protocol"
 
 type MergeEngine struct {
 	name string

@@ -3,7 +3,7 @@ package http
 import (
 	"fmt"
 
-	"github.com/influxdb/influxdb/common"
+	"github.com/Wikia/influxdb/common"
 )
 
 type Operation struct {

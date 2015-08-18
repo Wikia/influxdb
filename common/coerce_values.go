@@ -1,7 +1,7 @@
 package common
 
 import (
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 func getValue(value *protocol.FieldValue) (interface{}, Type) {

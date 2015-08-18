@@ -11,7 +11,7 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 	"github.com/dgnorton/goback"
-	"github.com/influxdb/influxdb/_vendor/raft/protobuf"
+	"github.com/Wikia/influxdb/_vendor/raft/protobuf"
 )
 
 // Snapshot represents an in-memory representation of the current state of the system.

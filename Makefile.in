@@ -88,9 +88,9 @@ endif
 endif
 
 # packages
-test_packages = $(shell sh -c "go list github.com/influxdb/influxdb/... | egrep -v 'integration|tools'")
+test_packages = $(shell sh -c "go list github.com/Wikia/influxdb/... | egrep -v 'integration|tools'")
 ifneq ($(packages),)
-test_packages = $(addprefix github.com/influxdb/influxdb/,$(packages))
+test_packages = $(addprefix github.com/Wikia/influxdb/,$(packages))
 endif
 
 # Storage engines libraries
@@ -218,7 +218,7 @@ endif
 storage_engines += $(leveldb_deps)
 
 dependencies: $(storage_engines)
-	$(GO) get $(GO_BUILD_OPTIONS) -d -t github.com/influxdb/influxdb/...
+	$(GO) get $(GO_BUILD_OPTIONS) -d -t github.com/Wikia/influxdb/...
 
 $(root)/bin/protoc-gen-go:
 	$(GO) get github.com/golang/protobuf/protoc-gen-go
@@ -230,11 +230,11 @@ protobuf: $(root)/bin/protoc-gen-go
 pre_build: dependencies protobuf parser build_version_string
 
 build_benchmark: pre_build
-	$(GO) build -o benchmark-storage $(GO_BUILD_OPTIONS) github.com/influxdb/influxdb/tools/benchmark-storage
-	$(GO) build -o benchmark-tool github.com/influxdb/influxdb/tools/benchmark
+	$(GO) build -o benchmark-storage $(GO_BUILD_OPTIONS) github.com/Wikia/influxdb/tools/benchmark-storage
+	$(GO) build -o benchmark-tool github.com/Wikia/influxdb/tools/benchmark
 
 build_binary: pre_build
-	$(GO) build -o influxdb $(GO_BUILD_OPTIONS) github.com/influxdb/influxdb/daemon
+	$(GO) build -o influxdb $(GO_BUILD_OPTIONS) github.com/Wikia/influxdb/daemon
 
 build: build_binary build_benchmark
 
@@ -246,7 +246,7 @@ clean:
 	rm -rf $(hyperleveldb_dir)
 	rm -rf $(rocksdb_dir)
 	$(MAKE) -C parser clean
-	$(GO) get -u $(GO_BUILD_OPTIONS) -d -t github.com/influxdb/influxdb/...
+	$(GO) get -u $(GO_BUILD_OPTIONS) -d -t github.com/Wikia/influxdb/...
 
 rebuild_static_assets:
 	$(GO) get github.com/rakyll/statik
@@ -278,7 +278,7 @@ coverage: dependencies
    $(GO) tool cover -html=${TMPDIR}/influxdb.$${i/\//}.coverage; done
 
 integration_test: dependencies build_binary
-	$(GO) test github.com/influxdb/influxdb/integration $(GOTEST_OPTS)
+	$(GO) test github.com/Wikia/influxdb/integration $(GOTEST_OPTS)
 
 package_version=$(subst -,_,$(version))
 

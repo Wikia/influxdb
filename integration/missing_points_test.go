@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	influxdb "github.com/influxdb/influxdb/client"
-	. "github.com/influxdb/influxdb/integration/helpers"
+	influxdb "github.com/Wikia/influxdb/client"
+	. "github.com/Wikia/influxdb/integration/helpers"
 	. "launchpad.net/gocheck"
 )
 

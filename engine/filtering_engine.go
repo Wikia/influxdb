@@ -3,8 +3,8 @@ package engine
 import (
 	"fmt"
 
-	"github.com/influxdb/influxdb/parser"
-	p "github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/parser"
+	p "github.com/Wikia/influxdb/protocol"
 )
 
 type FilteringEngine struct {

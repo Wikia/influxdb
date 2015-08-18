@@ -4,9 +4,9 @@ package coordinator
 // queries to write their output back into the db
 
 import (
-	"github.com/influxdb/influxdb/engine"
-	"github.com/influxdb/influxdb/parser"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/engine"
+	"github.com/Wikia/influxdb/parser"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 type ContinuousQueryWriter struct {

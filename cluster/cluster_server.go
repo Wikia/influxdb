@@ -7,8 +7,8 @@ import (
 	"time"
 
 	log "github.com/alecthomas/log4go"
-	c "github.com/influxdb/influxdb/configuration"
-	"github.com/influxdb/influxdb/protocol"
+	c "github.com/Wikia/influxdb/configuration"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 const (

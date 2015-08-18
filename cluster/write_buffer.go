@@ -5,7 +5,7 @@ import (
 	"time"
 
 	log "github.com/alecthomas/log4go"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 // Acts as a buffer for writes

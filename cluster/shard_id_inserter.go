@@ -3,8 +3,8 @@ package cluster
 import (
 	"fmt"
 
-	"github.com/influxdb/influxdb/engine"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/engine"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 // A processor to set the ShardId on the series to `id`

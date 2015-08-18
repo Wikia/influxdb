@@ -12,11 +12,11 @@ import (
 
 	log "github.com/alecthomas/log4go"
 	"github.com/BurntSushi/toml"
-	"github.com/influxdb/influxdb/cluster"
-	"github.com/influxdb/influxdb/configuration"
-	"github.com/influxdb/influxdb/datastore/storage"
-	"github.com/influxdb/influxdb/metastore"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/cluster"
+	"github.com/Wikia/influxdb/configuration"
+	"github.com/Wikia/influxdb/datastore/storage"
+	"github.com/Wikia/influxdb/metastore"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 type ShardDatastore struct {

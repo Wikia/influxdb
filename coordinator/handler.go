@@ -3,7 +3,7 @@ package coordinator
 import (
 	"net"
 
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 type Handler interface {

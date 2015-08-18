@@ -1,6 +1,6 @@
 package cluster
 
-import "github.com/influxdb/influxdb/protocol"
+import "github.com/Wikia/influxdb/protocol"
 
 // ResponseChannel is a processor for Responses as opposed to Series
 // like `engine.Processor'

@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/influxdb/influxdb/datastore/storage"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/datastore/storage"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 type Config struct {

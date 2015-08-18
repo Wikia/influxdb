@@ -7,7 +7,7 @@ import (
 	"time"
 
 	log "github.com/alecthomas/log4go"
-	"github.com/influxdb/influxdb/common"
+	"github.com/Wikia/influxdb/common"
 )
 
 type GroupByClause struct {

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/influxdb/influxdb/configuration"
+	"github.com/Wikia/influxdb/configuration"
 	levigo "github.com/jmhodges/levigo"
 )
 

@@ -7,12 +7,12 @@ import (
 	"time"
 
 	log "github.com/alecthomas/log4go"
-	"github.com/influxdb/influxdb/common"
-	"github.com/influxdb/influxdb/engine"
-	"github.com/influxdb/influxdb/metastore"
-	"github.com/influxdb/influxdb/parser"
-	p "github.com/influxdb/influxdb/protocol"
-	"github.com/influxdb/influxdb/wal"
+	"github.com/Wikia/influxdb/common"
+	"github.com/Wikia/influxdb/engine"
+	"github.com/Wikia/influxdb/metastore"
+	"github.com/Wikia/influxdb/parser"
+	p "github.com/Wikia/influxdb/protocol"
+	"github.com/Wikia/influxdb/wal"
 )
 
 // A shard implements an interface for writing and querying data.
@@ -525,7 +525,7 @@ func (self *ShardData) HandleDestructiveQuery(querySpec *parser.QuerySpec, reque
 			}
 
 			// don't send the access denied response until the end so the readers don't close out before the other responses.
-			// See https://github.com/influxdb/influxdb/issues/316 for more info.
+			// See https://github.com/Wikia/influxdb/issues/316 for more info.
 			if res.GetType() != p.Response_ERROR {
 				response <- res
 			} else if errorResponse == nil {

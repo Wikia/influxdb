@@ -4,8 +4,8 @@ package engine
 // that can't be aggregated locally or queries that don't require it like deletes and drops.
 import (
 	log "github.com/alecthomas/log4go"
-	"github.com/influxdb/influxdb/common"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/common"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 type Passthrough struct {

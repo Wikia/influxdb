@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/influxdb/influxdb/cluster"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/cluster"
+	"github.com/Wikia/influxdb/protocol"
 	. "launchpad.net/gocheck"
 )
 

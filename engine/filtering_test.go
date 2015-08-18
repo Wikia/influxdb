@@ -3,8 +3,8 @@ package engine
 import (
 	"testing"
 
-	"github.com/influxdb/influxdb/common"
-	"github.com/influxdb/influxdb/parser"
+	"github.com/Wikia/influxdb/common"
+	"github.com/Wikia/influxdb/parser"
 	. "launchpad.net/gocheck"
 )
 

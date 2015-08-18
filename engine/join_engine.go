@@ -2,8 +2,8 @@ package engine
 
 import (
 	"github.com/alecthomas/log4go"
-	"github.com/influxdb/influxdb/parser"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/parser"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 // TODO: Explain how JoinEngine work

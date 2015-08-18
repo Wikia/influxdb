@@ -10,9 +10,9 @@ import (
 
 	"github.com/golang/protobuf/proto"
 
-	"github.com/influxdb/influxdb/common"
-	"github.com/influxdb/influxdb/parser"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/common"
+	"github.com/Wikia/influxdb/parser"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 type PointSlice []protocol.Point

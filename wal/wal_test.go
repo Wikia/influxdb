@@ -10,9 +10,9 @@ import (
 
 	"github.com/golang/protobuf/proto"
 	logger "github.com/alecthomas/log4go"
-	. "github.com/influxdb/influxdb/checkers"
-	"github.com/influxdb/influxdb/configuration"
-	"github.com/influxdb/influxdb/protocol"
+	. "github.com/Wikia/influxdb/checkers"
+	"github.com/Wikia/influxdb/configuration"
+	"github.com/Wikia/influxdb/protocol"
 	. "launchpad.net/gocheck"
 )
 

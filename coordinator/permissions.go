@@ -1,8 +1,8 @@
 package coordinator
 
 import (
-	"github.com/influxdb/influxdb/common"
-	"github.com/influxdb/influxdb/parser"
+	"github.com/Wikia/influxdb/common"
+	"github.com/Wikia/influxdb/parser"
 )
 
 type Permissions struct{}

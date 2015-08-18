@@ -19,12 +19,12 @@ import (
 
 	log "github.com/alecthomas/log4go"
 	"github.com/gorilla/mux"
-	"github.com/influxdb/influxdb/_vendor/raft"
-	"github.com/influxdb/influxdb/cluster"
-	"github.com/influxdb/influxdb/common"
-	"github.com/influxdb/influxdb/configuration"
-	"github.com/influxdb/influxdb/parser"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/_vendor/raft"
+	"github.com/Wikia/influxdb/cluster"
+	"github.com/Wikia/influxdb/common"
+	"github.com/Wikia/influxdb/configuration"
+	"github.com/Wikia/influxdb/parser"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 const (

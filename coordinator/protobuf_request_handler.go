@@ -8,10 +8,10 @@ import (
 	"net"
 
 	log "github.com/alecthomas/log4go"
-	"github.com/influxdb/influxdb/cluster"
-	"github.com/influxdb/influxdb/common"
-	"github.com/influxdb/influxdb/parser"
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/cluster"
+	"github.com/Wikia/influxdb/common"
+	"github.com/Wikia/influxdb/parser"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 type ProtobufRequestHandler struct {

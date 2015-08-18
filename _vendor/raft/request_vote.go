@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/influxdb/influxdb/_vendor/raft/protobuf"
+	"github.com/Wikia/influxdb/_vendor/raft/protobuf"
 )
 
 // The request sent to a server to vote for a candidate to become a leader.

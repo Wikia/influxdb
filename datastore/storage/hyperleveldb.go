@@ -8,7 +8,7 @@ import (
 	"sync"
 
 	hyperleveldb "github.com/influxdb/hyperleveldb-go"
-	"github.com/influxdb/influxdb/configuration"
+	"github.com/Wikia/influxdb/configuration"
 )
 
 const HYPERLEVELDB_NAME = "hyperleveldb"

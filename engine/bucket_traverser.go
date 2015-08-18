@@ -1,6 +1,6 @@
 package engine
 
-import "github.com/influxdb/influxdb/protocol"
+import "github.com/Wikia/influxdb/protocol"
 
 // Traverses the buckets in either ascending or descending order. Each
 // bucket have the form (C1, C2, time) where C1 and C2 are column

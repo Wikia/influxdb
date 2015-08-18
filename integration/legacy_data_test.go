@@ -9,11 +9,11 @@ import (
 	"os"
 	"time"
 
-	. "github.com/influxdb/influxdb/checkers"
-	influxdb "github.com/influxdb/influxdb/client"
-	"github.com/influxdb/influxdb/common"
-	. "github.com/influxdb/influxdb/integration/helpers"
-	"github.com/influxdb/influxdb/protocol"
+	. "github.com/Wikia/influxdb/checkers"
+	influxdb "github.com/Wikia/influxdb/client"
+	"github.com/Wikia/influxdb/common"
+	. "github.com/Wikia/influxdb/integration/helpers"
+	"github.com/Wikia/influxdb/protocol"
 	. "launchpad.net/gocheck"
 )
 

@@ -6,7 +6,7 @@ import (
 	"os"
 
 	mdb "github.com/influxdb/gomdb"
-	"github.com/influxdb/influxdb/configuration"
+	"github.com/Wikia/influxdb/configuration"
 )
 
 const MDB_NAME = "lmdb"

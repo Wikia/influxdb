@@ -8,7 +8,7 @@ import (
 	"os"
 	"sync"
 
-	"github.com/influxdb/influxdb/_vendor/raft/protobuf"
+	"github.com/Wikia/influxdb/_vendor/raft/protobuf"
 )
 
 //------------------------------------------------------------------------------

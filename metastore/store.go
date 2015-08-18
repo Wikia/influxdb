@@ -7,7 +7,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 type Store struct {

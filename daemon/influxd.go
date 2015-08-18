@@ -12,10 +12,10 @@ import (
 	"time"
 
 	log "github.com/alecthomas/log4go"
-	"github.com/influxdb/influxdb/_vendor/raft"
-	"github.com/influxdb/influxdb/configuration"
-	"github.com/influxdb/influxdb/coordinator"
-	"github.com/influxdb/influxdb/server"
+	"github.com/Wikia/influxdb/_vendor/raft"
+	"github.com/Wikia/influxdb/configuration"
+	"github.com/Wikia/influxdb/coordinator"
+	"github.com/Wikia/influxdb/server"
 	"github.com/jmhodges/levigo"
 )
 

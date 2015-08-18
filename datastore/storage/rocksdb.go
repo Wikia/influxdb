@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/influxdb/influxdb/configuration"
+	"github.com/Wikia/influxdb/configuration"
 	rocksdb "github.com/influxdb/rocksdb"
 )
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/influxdb/influxdb/protocol"
+	"github.com/Wikia/influxdb/protocol"
 )
 
 // TODO: add some documentation

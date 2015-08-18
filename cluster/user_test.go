@@ -3,7 +3,7 @@ package cluster
 import (
 	"testing"
 
-	"github.com/influxdb/influxdb/common"
+	"github.com/Wikia/influxdb/common"
 	. "launchpad.net/gocheck"
 )
 

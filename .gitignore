@@ -66,3 +66,4 @@ integration/migration_data/
 .idea
 
 influxdb.iml
+scripts/post_install.sh.bak

@@ -125,6 +125,7 @@ typedef struct {
   drop_query *drop_query;
   list_series_query *list_series_query;
   char list_continuous_queries_query;
+  char list_queries_query;
 } query;
 
 // queries is an array of query

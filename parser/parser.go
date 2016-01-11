@@ -54,6 +54,7 @@ type ListType int
 
 const (
 	Series ListType = iota
+	Queries
 	ContinuousQueries
 	SeriesWithRegex
 )
@@ -124,6 +125,8 @@ func (self *Query) commonGetQueryString(withTime bool) string {
 		return fmt.Sprintf("drop continuous query %d", self.DropQuery.Id)
 	case ListSeries:
 		return "list series"
+	case ListQueries:
+		return "list queries"
 	case ListContinuousQueries:
 		return "list continuous queries"
 	case DropSeries:
@@ -151,6 +154,10 @@ func (self *Query) IsListSeriesQuery() bool {
 
 func (self *Query) IsListContinuousQueriesQuery() bool {
 	return self.ListQuery != nil && self.ListQuery.Type == ContinuousQueries
+}
+
+func (self *Query) IsListQueriesQuery() bool {
+	return self.ListQuery != nil && self.ListQuery.Type == Queries
 }
 
 func (self *ListQuery) HasRegex() bool {
@@ -655,6 +662,10 @@ func parseSingleQuery(q *C.query) (*Query, error) {
 
 	if q.list_continuous_queries_query != 0 {
 		return &Query{ListQuery: &ListQuery{Type: ContinuousQueries}, qType: ListContinuousQueries}, nil
+	}
+
+	if q.list_queries_query != 0 {
+		return &Query{ListQuery: &ListQuery{Type: Queries}, qType: ListQueries}, nil
 	}
 
 	if q.select_query != nil {

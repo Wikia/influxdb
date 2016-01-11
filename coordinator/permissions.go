@@ -72,6 +72,14 @@ func (self *Permissions) AuthorizeListContinuousQueries(user common.User, db str
 	return true, ""
 }
 
+func (self *Permissions) AuthorizeListQueries(user common.User, db string) (ok bool, err common.AuthorizationError) {
+	if !user.IsDbAdmin(db) {
+		return false, common.NewAuthorizationError("Insufficient permissions to list running queries")
+	}
+
+	return true, ""
+}
+
 func (self *Permissions) AuthorizeCreateDatabase(user common.User) (ok bool, err common.AuthorizationError) {
 	if !user.IsClusterAdmin() {
 		return false, common.NewAuthorizationError("Insufficient permissions to create database")

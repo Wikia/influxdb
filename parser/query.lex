@@ -32,6 +32,7 @@ static int yycolumn = 1;
 "merge"                   { return MERGE; }
 "list"                    { return LIST; }
 "series"                  { BEGIN(LIST_SERIES); return SERIES; }
+"queries"                 { return QUERIES; }
 "continuous query"        { return CONTINUOUS_QUERY; }
 "continuous queries"      { return CONTINUOUS_QUERIES; }
 "inner"                   { return INNER; }

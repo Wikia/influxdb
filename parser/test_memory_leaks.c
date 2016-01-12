@@ -29,6 +29,7 @@ main(int argc, char **argv)
     "select email from users.events as events where email === /gmail\\\\.com/i and time>now()-2d;",
     "select value from t where c = '5';",
     "select * from foo into bar;",
+    "list queries;",
   };
 
   int i;

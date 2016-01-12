@@ -28,7 +28,7 @@ type RunningQuery struct {
 type RunningQueryList  []*RunningQuery
 type RunningQueries struct {
 	data                 map[*RunningQuery]struct{}
-	lock                 sync.Mutex
+	sync.Mutex
 }
 
 type Coordinator struct {
@@ -60,26 +60,26 @@ func NewRunningQueries() *RunningQueries {
 }
 
 func (self *RunningQueries) Add(q *RunningQuery) {
-	self.lock.Lock()
+	self.Lock()
 	self.data[q] = struct{}{}
-	self.lock.Unlock()
+	self.Unlock()
 }
 
 func (self *RunningQueries) Remove(q *RunningQuery) {
-	self.lock.Lock()
+	self.Lock()
 	delete(self.data, q)
-	self.lock.Unlock()
+	self.Unlock()
 }
 
 func (self *RunningQueries) All() <-chan *RunningQuery {
 	ch := make(chan *RunningQuery)
 	go func() {
-		self.lock.Lock()
+		self.Lock()
 		for elem := range self.data {
 			ch <- elem
 		}
 		close(ch)
-		self.lock.Unlock()
+		self.Unlock()
 	}()
 
 	return ch

@@ -73,8 +73,8 @@ func (self *RunningQueries) Remove(q *RunningQuery) {
 
 func (self *RunningQueries) All() <-chan *RunningQuery {
 	ch := make(chan *RunningQuery)
-	self.lock.Lock()
 	go func() {
+		self.lock.Lock()
 		for elem := range self.data {
 			ch <- elem
 		}

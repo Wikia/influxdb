@@ -9,6 +9,7 @@ const (
 	Delete
 	DropContinuousQuery
 	ListSeries
+	ListQueries
 	ListContinuousQueries
 	DropSeries
 	Continuous
@@ -24,6 +25,8 @@ func (qt QueryType) String() string {
 		return "drop continuous query"
 	case ListSeries:
 		return "list series"
+	case ListQueries:
+		return "list queries"
 	case ListContinuousQueries:
 		return "list continuous queries"
 	case DropSeries:

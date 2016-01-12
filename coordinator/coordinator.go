@@ -3,7 +3,9 @@ package coordinator
 import (
 	"fmt"
 	"regexp"
+	"sort"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/Wikia/influxdb/cluster"
@@ -16,11 +18,93 @@ import (
 	"github.com/golang/protobuf/proto"
 )
 
+type RunningQuery struct {
+	userName             string
+	databaseName         string
+	queryString          string
+	startTime            time.Time
+}
+
+type RunningQueryList  []*RunningQuery
+type RunningQueries struct {
+	data                 map[*RunningQuery]struct{}
+	sync.Mutex
+}
+
 type Coordinator struct {
 	clusterConfiguration *cluster.ClusterConfiguration
 	raftServer           *RaftServer
 	config               *configuration.Configuration
 	permissions          Permissions
+	runningQueries       *RunningQueries
+}
+
+func NewRunningQuery(
+	userName string, databaseName string, queryString string, startTime time.Time) *RunningQuery {
+	runningQuery := &RunningQuery{
+		userName:             userName,
+		databaseName:         databaseName,
+		queryString:          queryString,
+		startTime:            startTime,
+	}
+
+	return runningQuery
+}
+
+func NewRunningQueries() *RunningQueries {
+	runningQueries := &RunningQueries{
+		data:                 make(map[*RunningQuery]struct {}),
+	}
+
+	return runningQueries
+}
+
+func (self *RunningQueries) Add(q *RunningQuery) {
+	self.Lock()
+	self.data[q] = struct{}{}
+	self.Unlock()
+}
+
+func (self *RunningQueries) Remove(q *RunningQuery) {
+	self.Lock()
+	delete(self.data, q)
+	self.Unlock()
+}
+
+func (self *RunningQueries) All() <-chan *RunningQuery {
+	ch := make(chan *RunningQuery)
+	go func() {
+		self.Lock()
+		for elem := range self.data {
+			ch <- elem
+		}
+		close(ch)
+		self.Unlock()
+	}()
+
+	return ch
+}
+
+func (self *RunningQueries) AllSorted() *RunningQueryList {
+	all := RunningQueryList{}
+	for q := range self.All() {
+		all = append(all,q)
+	}
+	sort.Sort(all)
+
+	return &all
+}
+
+func (self RunningQueryList) Len() int {
+	return len(self)
+}
+
+func (self RunningQueryList) Less(i, j int) bool {
+	return (self[i]).startTime.UnixNano() < (self[j]).startTime.UnixNano()
+}
+
+func (self RunningQueryList) Swap(i, j int) {
+	self[i], self[j] = self[j], self[i]
 }
 
 func NewCoordinator(
@@ -32,6 +116,7 @@ func NewCoordinator(
 		clusterConfiguration: clusterConfiguration,
 		raftServer:           raftServer,
 		permissions:          Permissions{},
+		runningQueries:       NewRunningQueries(),
 	}
 
 	return coordinator
@@ -39,6 +124,11 @@ func NewCoordinator(
 
 func (self *Coordinator) RunQuery(user common.User, database string, queryString string, p engine.Processor) (err error) {
 	log.Info("Start Query: db: %s, u: %s, q: %s", database, user.GetName(), queryString)
+	runningQuery := NewRunningQuery(user.GetName(), database, queryString, time.Now())
+	self.runningQueries.Add(runningQuery)
+	defer func(){
+		self.runningQueries.Remove(runningQuery)
+	}()
 	defer func(t time.Time) {
 		log.Debug("End Query: db: %s, u: %s, q: %s, t: %s", database, user.GetName(), queryString, time.Now().Sub(t))
 	}(time.Now())
@@ -76,7 +166,9 @@ func (self *Coordinator) runSingleQuery(user common.User, db string, q *parser.Q
 		return self.runContinuousQuery(user, db, q.GetQueryString())
 	case parser.ListSeries:
 		return self.runListSeriesQuery(querySpec, p)
-		// Data queries
+	case parser.ListQueries:
+		return self.runListQueries(user, db, p)
+	// Data queries
 	case parser.Delete:
 		return self.runDeleteQuery(querySpec, p)
 	case parser.DropSeries:
@@ -90,6 +182,19 @@ func (self *Coordinator) runSingleQuery(user common.User, db string, q *parser.Q
 
 func (self *Coordinator) runListContinuousQueries(user common.User, db string, p engine.Processor) error {
 	queries, err := self.ListContinuousQueries(user, db)
+	if err != nil {
+		return err
+	}
+	for _, q := range queries {
+		if ok, err := p.Yield(q); !ok || err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (self *Coordinator) runListQueries(user common.User, db string, p engine.Processor) error {
+	queries, err := self.ListQueries(user, db)
 	if err != nil {
 		return err
 	}
@@ -669,6 +774,37 @@ func (self *Coordinator) ListContinuousQueries(user common.User, db string) ([]*
 	series := []*protocol.Series{{
 		Name:   &seriesName,
 		Fields: []string{"id", "query"},
+		Points: points,
+	}}
+	return series, nil
+}
+
+func (self *Coordinator) ListQueries(user common.User, db string) ([]*protocol.Series, error) {
+	if ok, err := self.permissions.AuthorizeListQueries(user, db); !ok {
+		return nil, err
+	}
+
+	points := []*protocol.Point{}
+	now := time.Now()
+
+	for _, runningQuery := range *self.runningQueries.AllSorted() {
+		userName := runningQuery.userName
+		databaseName := runningQuery.databaseName
+		queryString := runningQuery.queryString
+		timeSoFar := now.Sub(runningQuery.startTime).Seconds()
+		points = append(points, &protocol.Point{
+			Values: []*protocol.FieldValue{
+				{StringValue: &userName},
+				{StringValue: &databaseName},
+				{StringValue: &queryString},
+				{DoubleValue: &timeSoFar},
+			},
+		})
+	}
+	seriesName := "running queries"
+	series := []*protocol.Series{{
+		Name:   &seriesName,
+		Fields: []string{"user", "database", "query", "running_time"},
 		Points: points,
 	}}
 	return series, nil

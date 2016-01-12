@@ -72,6 +72,7 @@ type RunningQuery struct {
 	databaseName         string
 	queryString          string
 	startTime            time.Time
+	remoteAddr           string
 }
 
 type RunningQueryList  []*RunningQuery
@@ -81,12 +82,13 @@ type RunningQueries struct {
 }
 
 func NewRunningQuery(
-	userName string, databaseName string, queryString string, startTime time.Time) *RunningQuery {
+	userName string, databaseName string, queryString string, startTime time.Time, remoteAddr string) *RunningQuery {
 	runningQuery := &RunningQuery{
 		userName:             userName,
 		databaseName:         databaseName,
 		queryString:          queryString,
 		startTime:            startTime,
+		remoteAddr:           remoteAddr,
 	}
 
 	return runningQuery

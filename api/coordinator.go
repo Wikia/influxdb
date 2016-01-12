@@ -15,6 +15,7 @@ type Coordinator interface {
 
 	// Data related api
 	RunQuery(cmn.User, string, string, engine.Processor) error
+	RunQueryWithContext(cmn.User, string, string, engine.Processor, *RequestContext) error
 	WriteSeriesData(cmn.User, string, []*protocol.Series) error
 
 	// Administration related api

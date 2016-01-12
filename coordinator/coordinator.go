@@ -3,9 +3,7 @@ package coordinator
 import (
 	"fmt"
 	"regexp"
-	"sort"
 	"strings"
-	"sync"
 	"time"
 
 	"github.com/Wikia/influxdb/cluster"
@@ -18,94 +16,14 @@ import (
 	"github.com/golang/protobuf/proto"
 )
 
-type RunningQuery struct {
-	userName             string
-	databaseName         string
-	queryString          string
-	startTime            time.Time
-}
-
-type RunningQueryList  []*RunningQuery
-type RunningQueries struct {
-	data                 map[*RunningQuery]struct{}
-	sync.Mutex
-}
-
 type Coordinator struct {
 	clusterConfiguration *cluster.ClusterConfiguration
 	raftServer           *RaftServer
 	config               *configuration.Configuration
 	permissions          Permissions
-	runningQueries       *RunningQueries
+	monitor              *CoordinatorMonitor
 }
 
-func NewRunningQuery(
-	userName string, databaseName string, queryString string, startTime time.Time) *RunningQuery {
-	runningQuery := &RunningQuery{
-		userName:             userName,
-		databaseName:         databaseName,
-		queryString:          queryString,
-		startTime:            startTime,
-	}
-
-	return runningQuery
-}
-
-func NewRunningQueries() *RunningQueries {
-	runningQueries := &RunningQueries{
-		data:                 make(map[*RunningQuery]struct {}),
-	}
-
-	return runningQueries
-}
-
-func (self *RunningQueries) Add(q *RunningQuery) {
-	self.Lock()
-	self.data[q] = struct{}{}
-	self.Unlock()
-}
-
-func (self *RunningQueries) Remove(q *RunningQuery) {
-	self.Lock()
-	delete(self.data, q)
-	self.Unlock()
-}
-
-func (self *RunningQueries) All() <-chan *RunningQuery {
-	ch := make(chan *RunningQuery)
-	go func() {
-		self.Lock()
-		for elem := range self.data {
-			ch <- elem
-		}
-		close(ch)
-		self.Unlock()
-	}()
-
-	return ch
-}
-
-func (self *RunningQueries) AllSorted() *RunningQueryList {
-	all := RunningQueryList{}
-	for q := range self.All() {
-		all = append(all,q)
-	}
-	sort.Sort(all)
-
-	return &all
-}
-
-func (self RunningQueryList) Len() int {
-	return len(self)
-}
-
-func (self RunningQueryList) Less(i, j int) bool {
-	return (self[i]).startTime.UnixNano() < (self[j]).startTime.UnixNano()
-}
-
-func (self RunningQueryList) Swap(i, j int) {
-	self[i], self[j] = self[j], self[i]
-}
 
 func NewCoordinator(
 	config *configuration.Configuration,
@@ -116,7 +34,7 @@ func NewCoordinator(
 		clusterConfiguration: clusterConfiguration,
 		raftServer:           raftServer,
 		permissions:          Permissions{},
-		runningQueries:       NewRunningQueries(),
+		monitor:              NewCoordinatorMonitor(),
 	}
 
 	return coordinator
@@ -125,9 +43,9 @@ func NewCoordinator(
 func (self *Coordinator) RunQuery(user common.User, database string, queryString string, p engine.Processor) (err error) {
 	log.Info("Start Query: db: %s, u: %s, q: %s", database, user.GetName(), queryString)
 	runningQuery := NewRunningQuery(user.GetName(), database, queryString, time.Now())
-	self.runningQueries.Add(runningQuery)
+	self.monitor.StartQuery(runningQuery)
 	defer func(){
-		self.runningQueries.Remove(runningQuery)
+		self.monitor.EndQuery(runningQuery)
 	}()
 	defer func(t time.Time) {
 		log.Debug("End Query: db: %s, u: %s, q: %s, t: %s", database, user.GetName(), queryString, time.Now().Sub(t))
@@ -665,6 +583,8 @@ func (self *Coordinator) CommitSeriesData(db string, serieses []*protocol.Series
 		seriesesSlice := make([]*protocol.Series, 0, len(serieses))
 		for _, s := range serieses {
 			seriesesSlice = append(seriesesSlice, s)
+
+			self.monitor.RecordWrite(uint64(len(s.Points)))
 		}
 
 		err := self.write(db, seriesesSlice, shard, sync)
@@ -787,7 +707,7 @@ func (self *Coordinator) ListQueries(user common.User, db string) ([]*protocol.S
 	points := []*protocol.Point{}
 	now := time.Now()
 
-	for _, runningQuery := range *self.runningQueries.AllSorted() {
+	for _, runningQuery := range *self.monitor.GetRunningQueries() {
 		userName := runningQuery.userName
 		databaseName := runningQuery.databaseName
 		queryString := runningQuery.queryString

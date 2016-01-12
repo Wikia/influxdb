@@ -100,7 +100,7 @@ func (self RunningQueryList) Len() int {
 }
 
 func (self RunningQueryList) Less(i, j int) bool {
-	return (self[i]).startTime.UnixNano() > (self[j]).startTime.UnixNano()
+	return (self[i]).startTime.UnixNano() < (self[j]).startTime.UnixNano()
 }
 
 func (self RunningQueryList) Swap(i, j int) {

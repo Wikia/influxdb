@@ -42,7 +42,7 @@ func (self *CoordinatorMonitor) StartQuery(q *RunningQuery) {
 func (self *CoordinatorMonitor) EndQuery(q *RunningQuery) {
 	took := time.Now().Sub(q.startTime)
 	if took > SLOW_QUERY_THRESHOLD {
-		log.Info("Slow Query [took %fs]: db: %s, u: %s, q: %s", took.Seconds(), q.databaseName, q.userName, q.queryString)
+		log.Info("Slow Query [took %fs]: remote_addr: %s, db: %s, u: %s, q: %s", took.Seconds(), q.remoteAddr, q.databaseName, q.userName, q.queryString)
 	}
 	self.runningQueries.Remove(q)
 }

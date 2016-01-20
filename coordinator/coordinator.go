@@ -14,6 +14,7 @@ import (
 	"github.com/Wikia/influxdb/protocol"
 	log "github.com/alecthomas/log4go"
 	"github.com/golang/protobuf/proto"
+	"github.com/Wikia/influxdb/api"
 )
 
 type Coordinator struct {
@@ -40,9 +41,10 @@ func NewCoordinator(
 	return coordinator
 }
 
-func (self *Coordinator) RunQuery(user common.User, database string, queryString string, p engine.Processor) (err error) {
+
+func (self *Coordinator) RunQueryWithContext(user common.User, database string, queryString string, p engine.Processor, requestContext *api.RequestContext) (err error) {
 	log.Info("Start Query: db: %s, u: %s, q: %s", database, user.GetName(), queryString)
-	runningQuery := NewRunningQuery(user.GetName(), database, queryString, time.Now())
+	runningQuery := NewRunningQuery(user.GetName(), database, queryString, time.Now(), requestContext.RemoteAddr())
 	self.monitor.StartQuery(runningQuery)
 	defer func(){
 		self.monitor.EndQuery(runningQuery)
@@ -65,6 +67,10 @@ func (self *Coordinator) RunQuery(user common.User, database string, queryString
 		}
 	}
 	return nil
+}
+
+func (self *Coordinator) RunQuery(user common.User, database string, queryString string, p engine.Processor) (err error) {
+	return self.RunQueryWithContext(user, database, queryString, p, api.NewEmptyRequestContext())
 }
 
 func (self *Coordinator) runSingleQuery(user common.User, db string, q *parser.Query, p engine.Processor) error {
@@ -709,12 +715,14 @@ func (self *Coordinator) ListQueries(user common.User, db string) ([]*protocol.S
 
 	for _, runningQuery := range *self.monitor.GetRunningQueries() {
 		userName := runningQuery.userName
+		remoteAddr := runningQuery.remoteAddr
 		databaseName := runningQuery.databaseName
 		queryString := runningQuery.queryString
 		timeSoFar := now.Sub(runningQuery.startTime).Seconds()
 		points = append(points, &protocol.Point{
 			Values: []*protocol.FieldValue{
 				{StringValue: &userName},
+				{StringValue: &remoteAddr},
 				{StringValue: &databaseName},
 				{StringValue: &queryString},
 				{DoubleValue: &timeSoFar},
@@ -724,7 +732,7 @@ func (self *Coordinator) ListQueries(user common.User, db string) ([]*protocol.S
 	seriesName := "running queries"
 	series := []*protocol.Series{{
 		Name:   &seriesName,
-		Fields: []string{"user", "database", "query", "running_time"},
+		Fields: []string{"user", "remote_addr", "database", "query", "running_time"},
 		Points: points,
 	}}
 	return series, nil

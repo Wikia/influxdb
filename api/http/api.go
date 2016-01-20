@@ -366,7 +366,8 @@ func (self *HttpServer) query(w libhttp.ResponseWriter, r *libhttp.Request) {
 			writer = &AllPointsWriter{map[string]*protocol.Series{}, w, precision, pretty}
 		}
 		seriesWriter := NewSeriesWriter(writer.yield)
-		err = self.coordinator.RunQuery(user, db, query, seriesWriter)
+		requestContext := api.NewRequestContext(r)
+		err = self.coordinator.RunQueryWithContext(user, db, query, seriesWriter, requestContext)
 		if err != nil {
 			if e, ok := err.(*parser.QueryError); ok {
 				return errorToStatusCode(err), e.PrettyPrint()

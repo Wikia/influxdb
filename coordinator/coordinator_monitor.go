@@ -42,7 +42,7 @@ func (self *CoordinatorMonitor) StartQuery(q *RunningQuery) {
 func (self *CoordinatorMonitor) EndQuery(q *RunningQuery) {
 	took := time.Now().Sub(q.startTime)
 	if took > SLOW_QUERY_THRESHOLD {
-		log.Info("Slow Query [took %fs]: db: %s, u: %s, q: %s", took.Seconds(), q.databaseName, q.userName, q.queryString)
+		log.Info("Slow Query [took %fs]: remote_addr: %s, db: %s, u: %s, q: %s", took.Seconds(), q.remoteAddr, q.databaseName, q.userName, q.queryString)
 	}
 	self.runningQueries.Remove(q)
 }
@@ -72,6 +72,7 @@ type RunningQuery struct {
 	databaseName         string
 	queryString          string
 	startTime            time.Time
+	remoteAddr           string
 }
 
 type RunningQueryList  []*RunningQuery
@@ -81,12 +82,13 @@ type RunningQueries struct {
 }
 
 func NewRunningQuery(
-	userName string, databaseName string, queryString string, startTime time.Time) *RunningQuery {
+	userName string, databaseName string, queryString string, startTime time.Time, remoteAddr string) *RunningQuery {
 	runningQuery := &RunningQuery{
 		userName:             userName,
 		databaseName:         databaseName,
 		queryString:          queryString,
 		startTime:            startTime,
+		remoteAddr:           remoteAddr,
 	}
 
 	return runningQuery
